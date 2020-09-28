@@ -1,0 +1,16 @@
+{
+  "name": "alt-detcter",
+  "version": "1.0.0",
+  "main": "main.js",
+  "author": "ItzCutePichu (HELLMAKER)",
+  
+  //npm packages that are needed
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "fs": "^0.0.2",
+    "moment": "^2.28.0",
+    "ms": "^2.1.2",
+    "parse-ms": "^2.1.0",
+    "quickmongo": "^2.0.1"
+  }
+}
