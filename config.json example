@@ -1,5 +1,5 @@
 {
-    "token":="",
-    "prefix": "a!", 
-    "COOLDOWN": "120" 
+    "token": "UR_TOKEN_HERE",
+    "prefix": "UR_PREFIX_HERE", 
+    "COOLDOWN": "UR_COOLDOWN_HERE" (MUST BE A NUMBER)
 }
