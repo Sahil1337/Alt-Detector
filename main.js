@@ -8,7 +8,7 @@ const moment = require('moment')
 //one more important thing i used quick mongo to make this bot not quick.db
 
 const { Database } = require("quickmongo");
-const db = new Database("mongodb+srv://HellMaker:HellMaker@cluster0.kv5mp.mongodb.net/Alt?retryWrites=true&w=majority");//upload ur mongoose cluster or local host
+const db = new Database(" ");//upload ur mongoose cluster or local host
 
 //ready event
 client.on('ready', () => {
