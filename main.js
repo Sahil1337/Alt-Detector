@@ -74,7 +74,7 @@ fs.readdir("./events/", (err, files) => {
      let joiningDate = moment.utc(member.joinedAt).format("dddd, MMMM Do YYYY, HH:mm:ss");
  
      //only sends message when alt found
-     if (created < 10000) {
+     if (created < 31) {
  
      //embed
          let altEmbed = new Discord.MessageEmbed()
