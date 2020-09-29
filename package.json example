@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "main.js",
   "author": "ItzCutePichu (HELLMAKER)",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
   
   //npm packages that are needed
   "dependencies": {
