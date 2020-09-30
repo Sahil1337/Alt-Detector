@@ -1,10 +1,11 @@
 {
   "name": "alt-detcter",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node main.js"
+  },
   "main": "main.js",
-  "author": "ItzCutePichu (HELLMAKER)",
-  
-  //npm packages that are needed
+  "author": "ItzCutePichu (HELLMAKER, https://github.com/HELLMAKER0001)",
   "dependencies": {
     "discord.js": "^12.3.1",
     "fs": "^0.0.2",

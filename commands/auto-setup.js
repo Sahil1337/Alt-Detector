@@ -1,8 +1,7 @@
 const Discord = require("discord.js")
-const { Database } = require("quickmongo");
-const db = new Database(" ");//your mongo cluster or local host
+const db = require("../database")
 let cooldown = new Set();
-const config = require('../config.json')
+const config = require('../config')
 
 module.exports.run = async(client, message, member) => {
 
@@ -18,7 +17,7 @@ let embed = new Discord.MessageEmbed()
   .setColor('RANDOM')
   .setTitle("AUTO SETUP")
   .setTimestamp()
-  .setFooter("BOT MADE BY ItzCutePichu#0001");
+  .setFooter("Bot Made By ItzCutePichu#0001");
   
   let xd = await message.channel.send(embed)
   xd.react("✅")
@@ -67,12 +66,12 @@ if (role) {
   let AutoSetupEmbed = new Discord.MessageEmbed()
   .setColor("RANDOM")
   .setDescription(`**__DOING AUTOSETUP__** \n **Please Wait For While ....**`)
-  .setFooter("BOT MADE BY ItzCutePichu#0001");
+  .setFooter("Bot Made By ItzCutePichu#0001");
 
   let AutoSetupDoneEmbed = new Discord.MessageEmbed()
   .setColor("RANDOM")
   .setDescription(`**__AUTO SETUP DONE__** \n **Now Alt Logging Channel is ${LoggingChannel} \n And Alt Notify Role is ${notifyRole}**`)
-  .setFooter("BOT MADE BY ItzCutePichu#0001");
+  .setFooter("Bot Made By ItzCutePichu#0001");
   
   message = await
   message.channel.send(AutoSetupEmbed)
