@@ -1,8 +1,6 @@
-const Discord = require('discord.js')
+let { owner } = require("../config")
 
 module.exports.run = async(client, message, args) => {
-    let owner = ['ur ids', 'ur ids']
-
     if (owner.includes(message.author.id)) return
     
     let ev = args.join(" ")
