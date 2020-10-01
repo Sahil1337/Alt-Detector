@@ -6,9 +6,10 @@ module.exports.run = async(client, message, args) => {
     let ev = args.join(" ")
     
     try {
-      message.channel.send(await eval(ev)) 
+        let sendMessage = (text) => message.channel.send("```\n"+text+"\n```")
+        let evaled = await eval(`async function yes(){\n${ev}\n}\nyes()`)
     } catch(e) {
-      return message.channel.send(e.message) 
+        return message.channel.send(e.message)
     } 
   } 
   module.exports.help = {
