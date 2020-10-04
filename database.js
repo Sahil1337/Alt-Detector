@@ -1,6 +1,9 @@
-const { mongoURL } = require("./config")
-const { Database } = require("quickmongo");
+const { Database } = require('quickmongo');
+const chalk = require('chalk')
+const db = new Database('ur_mongo_url');
 
-const db = new Database(mongoURL);
+db.on('ready', () => {
+    console.log(chalk.yellowBright(`Connected to database`))
+})
 
-module.exports = db
+module.exports = db;
