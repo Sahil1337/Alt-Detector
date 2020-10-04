@@ -33,7 +33,7 @@ module.exports = async (client, member) => {
   let joinPosition = member.guild.memberCount
 
   //altdate
-  let AltAge = await db.get(`altAge_${message.guild.id}`)
+  let AltAge = await db.get(`altAge_${member.guild.id}`)
 
   //only sends message when alt found
   if (created < AltAge) {
