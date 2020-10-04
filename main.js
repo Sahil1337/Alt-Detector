@@ -3,6 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const config = require("./config");
 const fs = require("fs");
+const chalk = require('chalk')
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -35,5 +36,4 @@ fs.readdir("./events/", (err, files) => {
     client.on(eventName, event.bind(null, client));
   });
 });
-
 client.login(config.token);
