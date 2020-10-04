@@ -1,5 +1,6 @@
+const Discord = require('discord.js');
 const moment = require("moment");
-let db = require("../database")
+const db = require('../database');
 
 module.exports = async (client, member) => {
   //getting loggingcChannel
@@ -28,18 +29,24 @@ module.exports = async (client, member) => {
     .utc(member.joinedAt)
     .format("dddd, MMMM Do YYYY, HH:mm:ss");
 
+  //joinposition
+  let joinPosition = member.guild.memberCount
+
+  //altdate
+  let AltAge = await db.get(`altAge_${message.guild.id}`)
+
   //only sends message when alt found
-  if (created < 31) {
+  if (created < AltAge) {
     //embed
     let altEmbed = //main alt message
     new Discord.MessageEmbed().setTitle("Alt Found!").setColor("RANDOM")
       .setDescription(`
 **__Alt Name__**: ${member.user} (${member.user.username})
-**ID**: ${member.user.id}
-**Account Created**: ${created} days ago
-**Account Creation Date**: ${creationDate}
-**Join Position**: ${member.guild.memberCount}
-**Join Date**: ${joiningDate}
+**__ID__**: ${member.user.id}
+**__Account Created__**: ${created} days ago
+**__Account Creation Date__**: ${creationDate}
+**__Join Position__**: ${joinPosition}
+**__Join Date__**: ${joiningDate}
 `);
 
     member.guild.channels.cache
