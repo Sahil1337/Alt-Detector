@@ -14,6 +14,10 @@ module.exports = {
         `**__BOT COMMANDS__**`,
         "`a!ping` : **To Check The Bot Ping** \n `a!autosetup` : **To AutoSetup The Bot** \n `a!config` : **To Set The Bot's Config**"
       )
+      .addField(`**__To Know More About Commands__**`,`
+      \`a!help autosetup\`
+      \`a!help config\`
+      `)
       .setColor("RANDOM");
 
     let AutoSetupEmbed = new Discord.MessageEmbed()
@@ -21,14 +25,16 @@ module.exports = {
       .setDescription(
         `**\`a!autosetup\` Command Will AutoSetup The Bot Alt LoggingChannel And NotifyRole And Will AutoSetup The Bot \n\n Usage(s) : \`a!autosetup\` , \`a!auto-setup\`**`
       )
+      .setImage('https://cdn.discordapp.com/attachments/758225431676977174/762258497467187200/CAPTURE.PNG')
       .setFooter(`Bot Made By ItzCutePichu#0001`)
       .setColor("RANDOM");
 
     let configEmbed = new Discord.MessageEmbed()
       .setTitle("CONFIG HELP")
       .setDescription(
-        `**\`a!config\` Command Is A Manual Command For Setting Alt LoggingChannel And Alt NotifyRole \n\n Usage(s) : \n \`a!config loggingChannel #channel\` \n \`a!config notifyRole @role\` \n\n __EXAMPLES__ \n \`a!config loggingChannel #alt-notification\` \n \`a!config notifyRole @alt-notify\`**`
-      );
+        `**\`a!config\` Command Is A Manual Command For Setting Alt LoggingChannel And Alt NotifyRole \n\n Usage(s) : \n \`a!config loggingChannel #channel\` \n \`a!config notifyRole @role\` \n \`a!config altAge days\` \n\n __EXAMPLES__ \n \`a!config loggingChannel #alt-notification\` \n \`a!config notifyRole @alt-notify\` \n \`a!config altAge 31\`**`)
+      .setImage('https://cdn.discordapp.com/attachments/758225431676977174/762259412160741405/CAPTURE.PNG')
+      .setFooter(`Bot Made By ItzCutePichu#000`)
 
     if (args[0] === "autosetup") {
       args.shift();
