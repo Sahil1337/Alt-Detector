@@ -1,5 +1,6 @@
+  
 const Discord = require("discord.js")
-const db = require("../database")
+const db = require('../database');
 let cooldown = new Set();
 const config = require('../config')
 
@@ -97,4 +98,3 @@ if(xd.reactions.cache.size !== null) return
       aliases: ['autosetup'],
       description: "autosetup the bot"
     }
-  
