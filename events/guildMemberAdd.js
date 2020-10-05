@@ -49,8 +49,7 @@ module.exports = async (client, member) => {
 **__Join Date__**: ${joiningDate}
 `);
 
-    member.guild.channels.cache
-      .get(LoggingChannel)
-      .send(`Notification: <@&${notifyRole}>`, altEmbed);
+    member.guild.channels.cache.get(LoggingChannel).send(`Notification: <@&${notifyRole}>`, altEmbed);
+    console.log(`message sent`)
   }
 };
