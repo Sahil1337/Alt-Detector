@@ -6,6 +6,8 @@ const config = require('../config')
 
 module.exports.run = async(client, message, member) => {
 
+if(message.member.hasPermission("ADMINISTRATOR")) {
+
   if(cooldown.has(message.author.id)) {
     message = await
     message.channel.send({embed: {color: "#10de47", description: `**You need to wait __${config.COOLDOWN}__ minutes to use this command again!**`}});
@@ -92,6 +94,7 @@ if(xd.reactions.cache.size !== null) return
   setTimeout(() => {
       cooldown.delete(message.author.id);
   }, config.COOLDOWN * 60 * 1000);
+}
   } 
   module.exports.help = {
       name: "auto-setup",
