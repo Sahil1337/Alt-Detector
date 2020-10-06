@@ -6,6 +6,8 @@ module.exports.run = async (client, message) => {
   //args
   const args = message.content.split(" ").slice(1);
 
+if(message.member.hasPermission("ADMINISTRATOR")) {
+
   const config = new Discord.MessageEmbed()
   .setTitle(`CONFIG`)
   .setDescription(`
@@ -96,6 +98,7 @@ module.exports.run = async (client, message) => {
   } 
  
   else message.channel.send("Unknown config variable...")
+}
 };
 
 module.exports.help = {
