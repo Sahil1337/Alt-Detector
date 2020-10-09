@@ -12,7 +12,7 @@ module.exports = {
       .setFooter(`Bot Made By ItzCutePichu#0001`)
       .addField(
         `**__BOT COMMANDS__**`,
-        "`a!ping` : **To Check The Bot Ping** \n `a!autosetup` : **To AutoSetup The Bot** \n `a!config` : **To Set The Bot's Config**"
+        "`a!ping` : **To Check The Bot Ping** \n `a!autosetup` : **To AutoSetup The Bot** \n `a!config` : **To Set The Bot's Config** \n `a!settings` : **To Check Config Settings**"
       )
       .addField(`**__To Know More About Commands__**`,`
       \`a!help autosetup\`
@@ -32,8 +32,8 @@ module.exports = {
     let configEmbed = new Discord.MessageEmbed()
       .setTitle("CONFIG HELP")
       .setDescription(
-        `**\`a!config\` Command Is A Manual Command For Setting Alt LoggingChannel And Alt NotifyRole \n\n Usage(s) : \n \`a!config loggingChannel #channel\` \n \`a!config notifyRole @role\` \n \`a!config altAge days\` \n\n __EXAMPLES__ \n \`a!config loggingChannel #alt-notification\` \n \`a!config notifyRole @alt-notify\` \n \`a!config altAge 31\`**`)
-      .setImage('https://cdn.discordapp.com/attachments/758225431676977174/762259412160741405/CAPTURE.PNG')
+        `**\`a!config\` Command Is A Manual Command For Setting Alt LoggingChannel And Alt NotifyRole \n\n Usage(s) : \n \`a!config loggingChannel #channel\` \n \`a!config notifyRole @role\` \n \`a!config altAge days\` \n \`a!config autokick\` \n \`a!config whitelist\` \n \`a!config remove\` \n\n __EXAMPLES__ \n \`a!config loggingChannel #alt-notification\` \n \`a!config notifyRole @alt-notify\` \n \`a!config altAge 31\` \n \`a!config autokick enable\` \n \`a!config autokick disable\` \n \`a!config autokick set 8\` \n \`a!whitelist 533955330829451275\` \n \`a!remove logchannel\` \n \`a!remove notifyrole\` \n \`a!remove altage\` \n \`a!remove autokick age\` \n \`a!remove whitelist\`**`)
+      .setImage('https://cdn.discordapp.com/attachments/758225431676977174/764023627238604800/examples.PNG')
       .setFooter(`Bot Made By ItzCutePichu#000`)
 
     if (args[0] === "autosetup") {
