@@ -59,8 +59,8 @@ member.guild.channels.cache.get(LoggingChannel).send(`__Notification:__ <@&${not
 let AutoKick = await db.fetch(`AutoKick_${member.guild.id}`);
 if (!AutoKick)return console.log(`Setup Is Not Done in ${member.guild.id} aka ${member.guild.name} Guild (AutoKick Isn't Enabled)`);
 
-let AutoKickAge = await db.get(`altAge_${member.guild.id}`)
-if (!AutoKickAge) return db.set(`altAge_${member.guild.id}`, 8)
+let AutoKickAge = await db.get(`AutokickAge_${member.guild.id}`)
+if (!AutoKickAge) return db.set(`AutokickAge_${member.guild.id}`, 8)
 
   if (AutoKick === true) {
 
