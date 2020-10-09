@@ -6,14 +6,39 @@ module.exports.run = async (client, message) => {
   //args
   const args = message.content.split(" ").slice(1);
 
-if(message.member.hasPermission("ADMINISTRATOR")) {
 
   const config = new Discord.MessageEmbed()
   .setTitle(`CONFIG`)
   .setDescription(`
-  \`a!config logChannel\` - **__Sets The logging Channel__**
-  \`a!config notifyRole\` - **__Sets The Notify Role__**
-  \`a!config altAge\`    - **__Sets The Alt Age__**
+✨ \`a!config logChannel\` - ( **__Sets The logging Channel__** )
+__VARIABLES__
+\`a!config logchannel #alt-notify\`
+
+✨ \`a!config notifyRole\` - ( **__Sets The Notify Role__** )
+__VARIABLES__
+\`a!config notifyrole @alt-notify\`
+
+✨ \`a!config altAge\`    - ( **__Sets The Alt Age__** )
+__VARIABLES__
+\`a!config altage 31\`
+
+✨ \`a!config autokick\` - ( **__Sets AutoKick Configs__** )
+__VARIABLES__
+\`a!config autokick enable\` (To Enable AutoKick)
+\`a!config autokick disable\` (To Disable Autokick)
+\`a!config autokick set 7\` (To Kick Alts Below The Number Of Days Setted)
+
+✨ \`a!config whitelist\` - ( **__Set The Whitelist User__** )
+__VARIABLES__
+\`a!config whitelist {user id}\` (AutoKick System Will Not Kick That User)
+
+✨ \`a!config remove\` - ( **__Removes The Specific Config__** )
+__VARIABLES__
+\`a!config remove logchannel\` (Removes Alt Logging Channel)
+\`a!config remove notifyrole\` (Removes Alt Notify Role)
+\`a!config remove altage\` (Removes AltAge)
+\`a!config remove autokickage\` (Removes AutoKick Age)
+\`a!config remove whitelist\` (Removes Whitelist User)
   `)
   .setColor(`RANDOM`)
 
@@ -36,40 +61,34 @@ if(message.member.hasPermission("ADMINISTRATOR")) {
       .setDescription(`New Channel is ${LoggingChannel}`)
       .setThumbnail(guildicon)
       .setFooter("Bot Made By ItzCutePichu#0001");
-    message.channel.send(succes);
 
     db.delete(`LoggingChannel_${message.guild.id}`);
 
     db.set(`LoggingChannel_${message.guild.id}`, LoggingChannel.id);
 
-    let embed2 = new Discord.MessageEmbed()
-      .setTitle(`:white_check_mark: Everything Ready!`)
-      .setFooter("Bot Made By ItzCutePichu#0001");
-
-    message.channel.send(embed2);
+    message.channel.send(succes);
 
   } else if (args[0].toLowerCase() === "notifyrole") {
     args.shift();
-    let notifyRole = message.mentions.roles.first();
 
-    if (!notifyRole)
-      return message.channel.send(`**PLEASE MENTION A VALID ROLE**`);
+    let LoggingChannel = message.mentions.channels.first();
+
+    if (!LoggingChannel)
+      return message.channel.send(`**PLEASE MENTION A VALID CHANNEL**`);
 
     var guildicon = message.guild.iconURL();
 
     const succes = new Discord.MessageEmbed()
-      .setTitle(`Alt Notify Role has been Setted!`)
-      .setDescription(`New Role is ${notifyRole}`)
+      .setTitle(`Alt Logging Channel has been Setted!`)
+      .setDescription(`New Channel is ${LoggingChannel}`)
       .setThumbnail(guildicon)
       .setFooter("Bot Made By ItzCutePichu#0001");
 
-    message.guild.roles.cache.get(notifyRole);
+    db.delete(`LoggingChannel_${message.guild.id}`);
+
+    db.set(`LoggingChannel_${message.guild.id}`, LoggingChannel.id);
+
     message.channel.send(succes);
-
-    db.delete(`notifyRole_${message.guild.id}`);
-
-    db.set(`notifyRole_${message.guild.id}`, notifyRole);
-
 
   } else if(args[0].toLowerCase() === "altage") {
     args.shift();
@@ -95,14 +114,102 @@ if(message.member.hasPermission("ADMINISTRATOR")) {
 
      db.delete(`altAge_${message.guild.id}`)
      db.set(`altAge_${message.guild.id}`, altage)
-  } 
+
+  } else if(args[0].toLowerCase(0) === "autokick") {
+      args.shift();
+
+      if (args[0] === "enable") {
+
+        db.set(`AutoKick_${message.guild.id}`, true)
+        db.delete(`AutoKickAge_${message.guild.id}`)
+        db.set(`AutoKickAge_${message.guild.id}`, 8)
+        message.channel.send(`**AutoKick Has Been __Enabled__** \nAutokick Age is \`8\` Days By Default`)
+      
+      } else if (args[0] === 'disable') {
+        db.delete(`AutoKick_${message.guild.id}`)
+        message.channel.send(`**AutoKick Has Been __Disabled__**`)
+      
+      } else if (args[0] === 'set') {
+
+     let autokickage = Number(args[1])
+
+    if (!autokickage) {
+        return message.channel.send(`**Please Specify The AutoKick Age \n__IN FORMAT__ : 7 [FOR 7 DAYS]**`)
+    }
  
-  else message.channel.send("Unknown config variable...")
-}
+    if (autokickage > 31) {
+        return message.channel.send(`**Huh ! ${message.author} You Can't Set Age Above __\`31\`__ Days**`)
+    }
+    var guildicon = message.guild.iconURL();
+ 
+     const succes = new Discord.MessageEmbed()
+       .setTitle(`AutoKick Age has been Setted!`)
+       .setDescription(`New AltAge is \`${autokickage}\` Days`)
+       .setThumbnail(guildicon)
+       .setFooter("Bot Made By ItzCutePichu#0001");
+ 
+     message.channel.send(succes);
+
+     db.delete(`AutokickAge_${message.guild.id}`)
+     db.set(`AutokickAge_${message.guild.id}`, autokickage)}
+
+  } else if (args[0].toLowerCase() === "whitelist") {
+      args.shift()
+
+           
+    let Whitelist = args[0]
+
+    if (!Whitelist) return message.channel.send(`**Please Tell The WhiteList User ID To Set**`)
+
+    if(isNaN(Whitelist)) return message.channel.send(`**Please Tell The Valid ID \nFor Example \`!config whiteList 533955330829451275\`**`)
+
+    db.delete(`WhiteListed_${message.guild.id}`)
+    db.set(`WhiteListed_${message.guild.id}`, Whitelist)
+
+    let whitelisted = new Discord.MessageEmbed()
+    .setTitle(`NEW WHITELIST USER SETTED`)
+    .setDescription(`
+    __Some Details About User__
+
+**__ID__** - ${Whitelist}
+
+***__NOTE__*** - **YOU CAN ONLY SET ONE WHITELIST USER ID THE PREVIOUS ID WILL BE DELETED AUTOMATICALLY**`)
+    message.channel.send(whitelisted)
+
+  } else if (args[0].toLowerCase() === "remove") {
+    args.shift()
+
+    if (args[0].toLowerCase(0) === 'logchannel') {
+      db.delete(`LoggingChannel_${message.guild.id}`)
+      message.channel.send(`**Logging Channel Has Been Removed**`)
+    }
+
+    if (args[0].toLowerCase() === "notifyrole") {
+      db.delete(`notifyRole_${message.guild.id}`)
+      message.channel.send(`**NotifyRole Has Been Removed**`)
+    }
+
+    if (args[0].toLowerCase() === "altage") {
+      db.delete(`altAge_${message.guild.id}`)
+      message.channel.send(`**AltAge Has Been Removed** \n**But Its \`31\` By Default**`)
+    } 
+
+    if (args[0].toLowerCase() === "autokickage") {
+      db.delete(`AutoKickAge_${message.guild.id}`)
+      message.channel.send(`**AutoKick Age Has Been Removed**  \n**But Its \`8\` By Default**`)
+    }
+
+    if (args[0].toLowerCase() === "whitelist") {
+      db.delete(`WhiteListed_${message.guild.id}`)
+      message.channel.send(`**WhiteList User Has Been Removed**`)
+    }
+
+  } else message.channel.send("Unknown config variable...")
+
 };
 
 module.exports.help = {
   name: "config",
   aliases: ["config"],
-  description: "sets config like loggingChannel , NotifyRole , AltAge",
+  description: "sets config",
 };
