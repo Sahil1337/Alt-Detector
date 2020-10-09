@@ -100,6 +100,5 @@ member.guild.channels.cache.get(LoggingChannel).send(embed)
 
   }
 
-
    }
 }
