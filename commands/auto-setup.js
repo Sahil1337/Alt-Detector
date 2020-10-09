@@ -6,7 +6,10 @@ const config = require('../config')
 
 module.exports.run = async(client, message, member) => {
 
-if(message.member.hasPermission("ADMINISTRATOR")) {
+ if (!message.member.hasPermission("MANAGE_GUILD")) {
+    await message.delete()
+    return message.channel.send(`**You Dont Have Permission To Use This Command**`)
+  }
 
   if(cooldown.has(message.author.id)) {
     message = await
@@ -94,7 +97,6 @@ if(xd.reactions.cache.size !== null) return
   setTimeout(() => {
       cooldown.delete(message.author.id);
   }, config.COOLDOWN * 60 * 1000);
-}
   } 
   module.exports.help = {
       name: "auto-setup",
