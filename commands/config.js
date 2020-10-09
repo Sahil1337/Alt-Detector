@@ -6,7 +6,11 @@ module.exports.run = async (client, message) => {
   //args
   const args = message.content.split(" ").slice(1);
 
-
+   if (!message.member.hasPermission("MANAGE_GUILD")) {
+    await message.delete()
+    return message.channel.send(`**You Dont Have Permission To Use This Command**`)
+  }
+  
   const config = new Discord.MessageEmbed()
   .setTitle(`CONFIG`)
   .setDescription(`
