@@ -2,7 +2,7 @@
 
 ## 📝 Starting Up
 1. Run `npm install` to install all packages
-2. Edit `config.js` and fill up all the things.
+2. Edit `config.js` and fill up all the things. (Also, if you are going to use MongoDB database, make sure to change your DB URL in `database.js`)
 3. Run it by `npm start` or `node main`
 
 ## 💨 Run the projects
